@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero glass">
+  <div class="hero-text">
+    <h1>Ask a research question</h1>
+    <p>Example: <em>Latest research on AI in education</em> or <em>Impact of Mediterranean diet on heart health</em>.</p>
+    <form method="POST" action="/search" class="query-form" onsubmit="return startLoading()">
+      <input name="query" type="text" placeholder="Type your question..." aria-label="query" required>
+      <button type="submit" class="btn">Generate Report</button>
+    </form>
+    <div class="helper">
+      <details>
+        <summary>New here? Click for a 30-second guide</summary>
+        <ol>
+          <li><strong>Enter</strong> a clear topic or question.</li>
+          <li>We <strong>search the web</strong> (2–3 sources via Tavily).</li>
+          <li>We <strong>extract text</strong> (Trafilatura for web, pypdf for PDFs).</li>
+          <li>We <strong>summarize</strong> with an LLM into a structured report.</li>
+          <li>Your report is <strong>saved</strong>. See it in <em>History</em> below.</li>
+        </ol>
+      </details>
+    </div>
+  </div>
+  <div class="hero-illustration">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+  </div>
+</section>
+
+<section class="history">
+  <h2>History</h2>
+  {% if reports %}
+    <ul class="cards">
+      {% for r in reports %}
+      <li class="card">
+        <a href="{{ url_for('view_report', report_id=r.id) }}" class="cardlink">
+          <div class="card-title">{{ r.query }}</div>
+          <div class="card-meta">Saved at {{ r.created_at }}</div>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="muted">No reports yet. Try asking your first question above.</p>
+  {% endif %}
+</section>
+{% endblock %}

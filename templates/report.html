@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="report glass">
+  <a href="/" class="back">← Back to history</a>
+  <h2 class="title">{{ report.query }}</h2>
+  <div class="meta">Created at {{ report.created_at }}</div>
+  <article class="content">
+    {{ report.report | safe }}
+  </article>
+
+  {% if report.links %}
+  <aside class="sources">
+    <h3>Sources (raw)</h3>
+    <ul>
+      {% for s in report.links %}
+        <li><a href="{{ s.url }}" target="_blank">{{ s.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </aside>
+  {% endif %}
+</section>
+{% endblock %}

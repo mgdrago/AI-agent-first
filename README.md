@@ -1,14 +1,11 @@
 # AI Research Agent (Flask + SQLite)
 
-A polished, interview-ready implementation of the **AI Agent Intern Take‑Home**:
-
 - **LLM + Exactly 2 tools**: Tavily (Web Search) + Extractor (Trafilatura for HTML, pypdf for PDFs)
 - Saves **query + report** in SQLite
 - **Attractive web UI** with glassmorphism, gradients, and subtle animations
 - **Error handling** with friendly messages
 - **History view** and **report view**
 
-> Supports **DEMO_MODE** to run without API keys (handy for an interview demo).
 
 ---
 
@@ -63,8 +60,6 @@ GEMINI_API_KEY=...
 # Optional:
 DEMO_MODE=true   # runs a mock path: fake search results and summary
 ```
-
-> Interview tip: Set `DEMO_MODE=true` to show the full UX without external dependencies, then disable to show real-time research.
 
 ---
 
